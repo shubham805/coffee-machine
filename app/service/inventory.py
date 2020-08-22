@@ -7,12 +7,25 @@ from app.repositories.repository import Repository
 
 class Inventory:
     def __init__(self, ingredient_repo: Repository):
+        """
+        Inventory service to manage inventory of ingredients
+        :param ingredient_repo:
+        """
         self.ingredient_repo = ingredient_repo
 
     def get_all_ingredients(self) -> List[Ingredient]:
+        """
+        Return all ingredients currently available
+        :return: List[Ingredient]
+        """
         return self.ingredient_repo.get_all()
 
     def get(self, ingredients: List[Ingredient]) -> List[Ingredient]:
+        """
+        Get the list of ingredient and decrement quantity
+        :param ingredients: List[Ingredient]
+        :return: List[Ingredient]
+        """
         current_ingredients: dict = self._get_current_ingredients(
             ingredients
         )
@@ -27,6 +40,11 @@ class Inventory:
         return ingredients
 
     def refill(self, ingredients: List[Ingredient]) -> List[Ingredient]:
+        """
+        Refill the quantity from the list and return updated list.
+        :param ingredients: List[Ingredient]
+        :return: List[Ingredient]
+        """
         current_ingredients: dict = self._get_current_ingredients(
             ingredients)
         return self._update_quantity(current_ingredients, ingredients, False)
