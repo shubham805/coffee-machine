@@ -1,3 +1,4 @@
 # coffee-machine
+tested on python 3.8.5
 
-Run test/test_machine.py
+Run python test_machine.py
